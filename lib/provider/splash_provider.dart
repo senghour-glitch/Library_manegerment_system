@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:library_onlile/view/home_screen.dart';
+import 'package:library_onlile/view/onboarding_screen.dart';
 
 class SplashProvider extends ChangeNotifier {
   bool _isLoading = true;
@@ -8,13 +8,13 @@ class SplashProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   void startSplash(BuildContext context) {
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 3), () {
       _isLoading = false;
       notifyListeners();
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => HomeScreen()),
+        MaterialPageRoute(builder: (_) => OnboardingScreen()),
       );
     });
   }
