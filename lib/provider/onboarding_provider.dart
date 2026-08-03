@@ -37,7 +37,7 @@ class OnboardingProvider extends ChangeNotifier {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
+          builder: (_) => LoginScreen(),
         ),
       );
     }
@@ -46,7 +46,7 @@ class OnboardingProvider extends ChangeNotifier {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (_) => const LoginScreen(),
+        builder: (_) => LoginScreen(),
       ),
     );
   }
