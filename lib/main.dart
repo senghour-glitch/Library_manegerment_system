@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:library_onlile/view/login_screen.dart';
-import 'package:library_onlile/view/splash_screen.dart';
+import 'package:library_onlile/provider/loginscreen_provider.dart';
+import 'package:provider/provider.dart';
+
+import 'view/login_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }
