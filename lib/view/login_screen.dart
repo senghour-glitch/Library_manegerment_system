@@ -25,21 +25,20 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.menu_book,
                       size: 80,
                       color: Colors.indigo,
                     ),
-                    const SizedBox(height: 15),
-                    const Text(
+                    SizedBox(height: 15),
+                     Text(
                       "Library Login",
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 30),
-
+                    SizedBox(height: 30),
                     TextField(
                       controller: provider.emailController,
                       keyboardType: TextInputType.emailAddress,
@@ -51,9 +50,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    const SizedBox(height: 20),
-
+                    SizedBox(height: 20),
                     TextField(
                       controller: provider.passwordController,
                       obscureText: provider.obscurePassword,
@@ -73,26 +70,22 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    const SizedBox(height: 10),
-
+                    SizedBox(height: 10),
                     Row(
                       children: [
                         Checkbox(
                           value: provider.rememberMe,
                           onChanged: provider.toggleRememberMe,
                         ),
-                        const Text("Remember Me"),
-                        const Spacer(),
+                         Text("Remember Me"),
+                        Spacer(),
                         TextButton(
                           onPressed: () {},
                           child: const Text("Forgot Password?"),
                         ),
                       ],
                     ),
-
-                    const SizedBox(height: 20),
-
+                    SizedBox(height: 20),
                     SizedBox(
                       width: double.infinity,
                       height: 50,
