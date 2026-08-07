@@ -13,7 +13,6 @@ class OnboardingScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // PageView
             Expanded(
               child: PageView.builder(
                 controller: provider.pageController,
@@ -28,9 +27,9 @@ class OnboardingScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
+                        Image.network(
                           data.image,
-                          height: 250,
+                          height: 300,
                         ),
                         SizedBox(height: 40),
                         Text(
