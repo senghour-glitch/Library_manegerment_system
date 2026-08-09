@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:library_onlile/provider/loginscreen_provider.dart';
 import 'package:library_onlile/provider/onboarding_provider.dart';
+import 'package:library_onlile/provider/register_provider.dart';
 import 'package:library_onlile/provider/splash_provider.dart';
 import 'package:library_onlile/provider/homescreen_provider.dart';
 import 'package:library_onlile/view/splash_screen.dart';
@@ -21,6 +22,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => HomeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => RegisterProvider()
         ),
       ],
       child: const MyApp(),
