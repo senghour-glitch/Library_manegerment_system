@@ -1,0 +1,7 @@
+[33m6fe4a52[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mseth-work[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to origin/master
+[33m10df2be[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{1}: reset: moving to master
+[33m349b39c[m[33m ([m[1;31morigin/seth-work[m[33m, [m[1;32mmy-feature-branch[m[33m)[m HEAD@{2}: checkout: moving from my-feature-branch to seth-work
+[33m349b39c[m[33m ([m[1;31morigin/seth-work[m[33m, [m[1;32mmy-feature-branch[m[33m)[m HEAD@{3}: commit (merge): Resolved merge conflicts
+[33m10df2be[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{4}: checkout: moving from master to my-feature-branch
+[33m10df2be[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{5}: commit: Updated login validation
+[33m133fa86[m HEAD@{6}: clone: from https://github.com/senghour-glitch/Library_manegerment_system.git
