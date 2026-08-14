@@ -1,16 +1,16 @@
-class UserModel{
 
+class ProfileModel {
   String name;
   String email;
-  String image;
+  String phone;
+  String address;
+  String profileImage;
 
-
-  UserModel({
-
+  ProfileModel({
     required this.name,
     required this.email,
-    required this.image,
-
+    required this.phone,
+    required this.address,
+    required this.profileImage,
   });
-
 }

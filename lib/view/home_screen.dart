@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:library_onlile/provider/categories_provider.dart';
+import 'package:library_onlile/view/notification_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,7 +20,14 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => NotificationScreen(),
+                ),
+              );
+            },
             icon: const Icon(Icons.notifications, color: Colors.white),
           ),
         ],

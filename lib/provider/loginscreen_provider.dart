@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:library_onlile/view/home_screen.dart';
+import 'package:library_onlile/wedgid_controller.dart/costom_buttom.dart';
 
 class LoginProvider extends ChangeNotifier {
   final TextEditingController emailController =
@@ -34,7 +34,7 @@ class LoginProvider extends ChangeNotifier {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
+          builder: (_) => const CustomBottom(),
         ),
       );
     }
