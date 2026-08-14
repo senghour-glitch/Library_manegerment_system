@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
-import 'package:library_onlile/provider/home_screen_provider.dart';
-import 'package:library_onlile/view/categories_screen.dart';
+import 'package:library_onlile/provider/categories_provider.dart';
+import 'package:library_onlile/view/notification_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {

@@ -1,138 +1,150 @@
 import 'package:flutter/material.dart';
-import 'package:library_onlile/model/category_model.dart';
-import 'package:library_onlile/view/search_screen.dart';
+=======
+import 'package:library_onlile/model/categories_model.dart';
+import 'package:library_onlile/provider/categories_provider.dart';
+import 'package:library_onlile/view/bookdetails_screen.dart';
+import 'package:provider/provider.dart';
 
-class CategoriesScreen extends StatelessWidget {
+ 
+class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
-
+ 
+  @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+ 
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<CategoriesProvider>().fetchCategories();
+    });
+  }
+ 
+  void _onCategoryTap(CategoryModel category) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => BookDetailsScreen(category: category),
+      ),
+    );
+  }
+ 
   @override
   Widget build(BuildContext context) {
+    const teal = Color(0xFF16414B);
+    const gold = Color(0xFF8A6D3B);
+    const background = Color(0xFFF7F6F4);
+ 
     return Scaffold(
+      backgroundColor: background,
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back, color: Color(0xFF0F5555)),
-        title: Text(
-          "Library",
+        backgroundColor: background,
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: teal),
+          onPressed: () => Navigator.maybePop(context),
+        ),
+        title: const Text(
+          'Library',
           style: TextStyle(
-            fontFamily: 'Times New Roman',
+            color: teal,
+            fontFamily: 'Serif',
+            fontWeight: FontWeight.w600,
             fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF0F5555),
           ),
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search, color: Color(0xFF0F5555), size: 30),
+            icon: const Icon(Icons.search, color: teal),
+            onPressed: () {
+              // TODO: hook up search
+            },
           ),
         ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1),
-          child: Container(color: Colors.grey.shade300, height: 1.0),
-        ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Categories",
-                style: TextStyle(
-                  fontFamily: 'Times New Roman',
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF0F5555),
+      body: Consumer<CategoriesProvider>(
+        builder: (context, provider, _) {
+          switch (provider.status) {
+            case CategoriesStatus.initial:
+            case CategoriesStatus.loading:
+              return const Center(child: CircularProgressIndicator(color: teal));
+ 
+            case CategoriesStatus.error:
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('Something went wrong.\n${provider.errorMessage ?? ''}',
+                        textAlign: TextAlign.center),
+                    const SizedBox(height: 12),
+                    ElevatedButton(
+                      onPressed: () => provider.fetchCategories(),
+                      child: const Text('Retry'),
+                    ),
+                  ],
                 ),
-              ),
-              Text(
-                "Explore our curated collection of knowledge",
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
-              ),
-              SizedBox(height: 10),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  childAspectRatio: 0.8,
-                  mainAxisSpacing: 16,
-                ),
-                itemCount: categoriesList.length,
-                itemBuilder: (context, index) {
-                  final category = categoriesList[index];
-                  return Material(
-                    clipBehavior: Clip.antiAlias,
-                    elevation: 1,
-                    shadowColor: Colors.black12,
-
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                SearchScreen(selectedCategory: category.title),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.vertical(
-                                  top: Radius.circular(12),
-                                  bottom: Radius.circular(12),
-                                ),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Image.network(
-                                    categoriesList[index].image,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+              );
+ 
+            case CategoriesStatus.loaded:
+              return RefreshIndicator(
+                onRefresh: provider.fetchCategories,
+                child: CustomScrollView(
+                  slivers: [
+                    SliverPadding(
+                      padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+                      sliver: SliverToBoxAdapter(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'Categories',
+                              style: TextStyle(
+                                color: teal,
+                                fontFamily: 'Serif',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 32,
                               ),
-                              SizedBox(height: 20),
-                              Text(
-                                categoriesList[index].title,
-                                style: TextStyle(
-                                  fontFamily: 'Times New Roman',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                "${categoriesList[index].bookCount} BOOKS",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF8B6E28),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                            SizedBox(height: 6),
+                            Text(
+                              'Explore our curated collection of knowledge.',
+                              style: TextStyle(color: Colors.black54, fontSize: 15),
+                            ),
+                            SizedBox(height: 20),
+                          ],
                         ),
                       ),
                     ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      sliver: SliverGrid(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+                          childAspectRatio: 0.78,
+                        ),
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            final category = provider.categories[index];
+                            return _CategoryCard(
+                              category: category,
+                              onTap: () => _onCategoryTap(category),
+                            );
+                          },
+                          childCount: provider.categories.length,
+                        ),
+                      ),
+                    ),
+                    const SliverToBoxAdapter(child: SizedBox(height: 24)),
+                  ],
+                ),
+              );
+          }
+        },
       ),
     );
   }

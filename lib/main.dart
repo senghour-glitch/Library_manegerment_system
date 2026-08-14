@@ -1,30 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:library_onlile/provider/home_screen_provider.dart';
-import 'package:library_onlile/provider/search_provider.dart';
-import 'package:library_onlile/view/categories_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:library_onlile/provider/bookdetails_provider.dart';
+import 'package:library_onlile/provider/categories_provider.dart';
+import 'package:library_onlile/provider/loginscreen_provider.dart';
+import 'package:library_onlile/provider/notification_provider.dart';
+import 'package:library_onlile/provider/onboarding_provider.dart';
+import 'package:library_onlile/provider/profile_provider.dart';
+import 'package:library_onlile/provider/register_provider.dart';
+import 'package:library_onlile/provider/setting_provider.dart';
+import 'package:library_onlile/provider/splash_provider.dart';
+import 'package:library_onlile/view/splash_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => SplashProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => OnboardingProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LoginProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => RegisterProvider()
+        ),
+         ChangeNotifierProvider(
+          create: (_) => CategoriesProvider()
+        ),
+         ChangeNotifierProvider(
+          create: (_) => BookDetailsProvider()
+        ),
+        ChangeNotifierProvider(
+          create: (_) => RegisterProvider(),
+        ),
+        ChangeNotifierProvider(create: (_) => SettingProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => SettingProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      
-  providers: [
-    ChangeNotifierProvider(create: (_) => HomeProvider()), 
-    ChangeNotifierProvider(create: (_) => SearchProvider()),
-  ],
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: CategoriesScreen(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Library',
+      home: const SplashScreen(),
     );
   }
 }
