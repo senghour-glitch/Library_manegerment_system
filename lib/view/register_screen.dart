@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:library_onlile/provider/register_provider.dart';
 import 'package:library_onlile/view/login_screen.dart';
+import 'package:library_onlile/wedgid_controller.dart/costom_buttom.dart';
 import 'package:provider/provider.dart';
 
 import 'home_screen.dart';
@@ -348,7 +349,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
               if (success) {
                 Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (_) => const HomeScreen()),
+                  MaterialPageRoute(builder: (_) => CostomButtom()),
                   (route) => false,
                 );
               } else if (provider.errorMessage != null) {

@@ -94,4 +94,5 @@ class RegisterProvider extends ChangeNotifier {
     final regex = RegExp(r'^[\w\.\-]+@[\w\-]+\.[\w\-\.]+$');
     return regex.hasMatch(value.trim());
   }
+  
 }

@@ -11,12 +11,14 @@ class CategoryModel {
     required this.bookCount,
   });
 
-  factory CategoryModel.fromJson(Map<String, dynamic> json) {
+  factory CategoryModel.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CategoryModel(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      imageUrl: json['imageUrl'] as String,
-      bookCount: json['bookCount'] as int,
+      id: json['id'] ?? '',
+      title: json['title'] ?? '',
+      imageUrl: json['imageUrl'] ?? '',
+      bookCount: json['bookCount'] ?? 0,
     );
   }
 
@@ -29,15 +31,10 @@ class CategoryModel {
     };
   }
 
-  /// Nicely formatted count, e.g. "1,240"
   String get formattedBookCount {
-    final s = bookCount.toString();
-    final buffer = StringBuffer();
-    for (int i = 0; i < s.length; i++) {
-      final posFromEnd = s.length - i;
-      buffer.write(s[i]);
-      if (posFromEnd > 1 && posFromEnd % 3 == 1) buffer.write(',');
-    }
-    return buffer.toString();
+    return bookCount.toString().replaceAllMapped(
+      RegExp(r'\B(?=(\d{3})+(?!\d))'),
+      (match) => ',',
+    );
   }
 }

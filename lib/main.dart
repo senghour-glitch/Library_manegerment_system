@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:library_onlile/provider/bookdetails_provider.dart';
 import 'package:library_onlile/provider/categories_provider.dart';
+import 'package:library_onlile/provider/homescreen_provider.dart';
 import 'package:library_onlile/provider/loginscreen_provider.dart';
 import 'package:library_onlile/provider/notification_provider.dart';
 import 'package:library_onlile/provider/onboarding_provider.dart';
@@ -15,27 +16,14 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => SplashProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => OnboardingProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => LoginProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => RegisterProvider()
-        ),
-         ChangeNotifierProvider(
-          create: (_) => CategoriesProvider()
-        ),
-         ChangeNotifierProvider(
-          create: (_) => BookDetailsProvider()
-        ),
-        ChangeNotifierProvider(
-          create: (_) => RegisterProvider(),
-        ),
+        ChangeNotifierProvider(create: (_) => SplashProvider()),
+        ChangeNotifierProvider(create: (_) => OnboardingProvider()),
+        ChangeNotifierProvider(create: (_) => HomeScreenProvider()),
+        ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => RegisterProvider()),
+        ChangeNotifierProvider(create: (_) => CategoriesProvider()),
+        ChangeNotifierProvider(create: (_) => BookDetailsProvider()),
+        ChangeNotifierProvider(create: (_) => RegisterProvider()),
         ChangeNotifierProvider(create: (_) => SettingProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => SettingProvider()),
