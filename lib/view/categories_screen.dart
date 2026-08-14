@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+=======
 import 'package:library_onlile/model/categories_model.dart';
 import 'package:library_onlile/provider/categories_provider.dart';
 import 'package:library_onlile/view/bookdetails_screen.dart';
@@ -16,16 +17,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   void initState() {
     super.initState();
-    // Kick off the fetch once, right after the first frame.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<CategoriesProvider>().fetchCategories();
     });
   }
  
   void _onCategoryTap(CategoryModel category) {
-    // Pushes to the book details screen. Swap the mock book passed here
-    // for a real lookup (e.g. fetch the first/featured book in this
-    // category) once your books API/repository is wired up.
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -152,80 +149,3 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     );
   }
 }
- 
-class _CategoryCard extends StatelessWidget {
-  final CategoryModel category;
-  final VoidCallback onTap;
- 
-  const _CategoryCard({required this.category, required this.onTap});
- 
-  @override
-  Widget build(BuildContext context) {
-    const teal = Color(0xFF16414B);
-    const gold = Color(0xFF8A6D3B);
- 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(18),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(18),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.06),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  category.imageUrl,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  loadingBuilder: (context, child, progress) {
-                    if (progress == null) return child;
-                    return Container(color: Colors.grey.shade200);
-                  },
-                  errorBuilder: (context, error, stack) => Container(
-                    color: Colors.grey.shade200,
-                    child: const Icon(Icons.image_not_supported_outlined,
-                        color: Colors.grey),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              category.title,
-              style: const TextStyle(
-                color: teal,
-                fontFamily: 'Serif',
-                fontWeight: FontWeight.bold,
-                fontSize: 17,
-              ),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              '${category.formattedBookCount} BOOKS',
-              style: const TextStyle(
-                color: gold,
-                fontWeight: FontWeight.w600,
-                fontSize: 11,
-                letterSpacing: 0.5,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
- 

@@ -9,7 +9,6 @@ import 'package:library_onlile/provider/register_provider.dart';
 import 'package:library_onlile/provider/setting_provider.dart';
 import 'package:library_onlile/provider/splash_provider.dart';
 import 'package:library_onlile/view/splash_screen.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(
