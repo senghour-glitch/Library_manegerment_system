@@ -168,7 +168,6 @@ class HomeScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final books = homeProvider.filteredBooks[index];
                     return Container(
-                      
                       width: 300,
                       margin: const EdgeInsets.only(right: 16),
                       decoration: BoxDecoration(
