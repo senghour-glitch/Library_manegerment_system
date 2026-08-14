@@ -111,7 +111,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  hintText: "Search by title, author, or ISBN... ",
+                  hintText: "Search by title, author, or ISBN...",
                 ),
               ),
               const SizedBox(height: 20),
