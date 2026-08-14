@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:library_onlile/provider/bookdetails_provider.dart';
+import 'package:library_onlile/provider/categories_provider.dart';
 import 'package:library_onlile/provider/loginscreen_provider.dart';
 import 'package:library_onlile/provider/onboarding_provider.dart';
 import 'package:library_onlile/provider/register_provider.dart';
 import 'package:library_onlile/provider/splash_provider.dart';
-import 'package:library_onlile/provider/homescreen_provider.dart';
 import 'package:library_onlile/view/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -21,10 +22,13 @@ void main() {
           create: (_) => LoginProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => HomeProvider(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => RegisterProvider()
+        ),
+         ChangeNotifierProvider(
+          create: (_) => CategoriesProvider()
+        ),
+         ChangeNotifierProvider(
+          create: (_) => BookDetailsProvider()
         ),
       ],
       child: const MyApp(),
