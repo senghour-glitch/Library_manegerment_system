@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:library_onlile/provider/home_screen_provider.dart';
 import 'package:library_onlile/provider/search_provider.dart';
-import 'package:library_onlile/view/search_screen.dart';
+import 'package:library_onlile/view/categories_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: SearchScreen(),
+        home: CategoriesScreen(),
       ),
     );
   }

@@ -5,7 +5,8 @@ import 'package:library_onlile/provider/search_provider.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  final String? selectedCategory;
+  const SearchScreen({super.key,this.selectedCategory});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
