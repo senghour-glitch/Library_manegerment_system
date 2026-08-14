@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:library_onlile/model/homescreen_model.dart';
 import 'package:library_onlile/provider/homescreen_provider.dart';
+import 'package:library_onlile/view/notification_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,8 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Notifications coming soon')),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => NotificationScreen()),
               );
             },
             icon: const Icon(Icons.notifications_none, color: teal),

@@ -7,6 +7,7 @@ import 'package:library_onlile/provider/notification_provider.dart';
 import 'package:library_onlile/provider/onboarding_provider.dart';
 import 'package:library_onlile/provider/profile_provider.dart';
 import 'package:library_onlile/provider/register_provider.dart';
+import 'package:library_onlile/provider/search_provider.dart';
 import 'package:library_onlile/provider/setting_provider.dart';
 import 'package:library_onlile/provider/splash_provider.dart';
 import 'package:library_onlile/view/splash_screen.dart';
@@ -22,6 +23,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => RegisterProvider()),
         ChangeNotifierProvider(create: (_) => CategoriesProvider()),
+        ChangeNotifierProvider(create: (_) => SearchProvider()),
         ChangeNotifierProvider(create: (_) => BookDetailsProvider()),
         ChangeNotifierProvider(create: (_) => RegisterProvider()),
         ChangeNotifierProvider(create: (_) => SettingProvider()),
