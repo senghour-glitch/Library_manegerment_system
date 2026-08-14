@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
   final String? selectedCategory;
-  const SearchScreen({super.key,this.selectedCategory});
+  const SearchScreen({super.key, this.selectedCategory});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -115,7 +115,6 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
               // Loading State
               if (searchProvider.isLoading) ...[
                 const SizedBox(height: 20),
@@ -130,7 +129,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "Recent Searches",
+                      "Recent Searches ",
                       style: TextStyle(
                         fontFamily: 'Times New Roman',
                         fontSize: 20,
