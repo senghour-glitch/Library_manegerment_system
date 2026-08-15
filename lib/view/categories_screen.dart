@@ -53,10 +53,6 @@ class _CategoriesScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background,
-
-      // =========================
-      // APP BAR
-      // =========================
       appBar: AppBar(
         backgroundColor: background,
         elevation: 0,
@@ -102,18 +98,13 @@ class _CategoriesScreenState
         ],
       ),
 
-      // =========================
-      // BODY
-      // =========================
       body: Consumer<CategoriesProvider>(
         builder: (
           context,
           provider,
           child,
         ) {
-          // =========================
-          // LOADING
-          // =========================
+
           if (provider.status ==
                   CategoriesStatus.initial ||
               provider.status ==
@@ -125,9 +116,6 @@ class _CategoriesScreenState
             );
           }
 
-          // =========================
-          // ERROR
-          // =========================
           if (provider.status ==
               CategoriesStatus.error) {
             return Center(
@@ -187,9 +175,6 @@ class _CategoriesScreenState
             );
           }
 
-          // =========================
-          // EMPTY
-          // =========================
           if (provider.categories.isEmpty) {
             return const Center(
               child: Text(
@@ -201,9 +186,7 @@ class _CategoriesScreenState
             );
           }
 
-          // =========================
-          // LOADED
-          // =========================
+
           return RefreshIndicator(
             onRefresh:
                 provider.fetchCategories,
@@ -213,9 +196,7 @@ class _CategoriesScreenState
                   const AlwaysScrollableScrollPhysics(),
 
               slivers: [
-                // =========================
-                // HEADER
-                // =========================
+
                 SliverPadding(
                   padding:
                       const EdgeInsets.fromLTRB(
@@ -329,11 +310,6 @@ class _CategoriesScreenState
     );
   }
 }
-
-// ======================================================
-// CATEGORY CARD
-// ======================================================
-
 class _CategoryCard
     extends StatelessWidget {
   final CategoryModel category;
@@ -389,9 +365,7 @@ class _CategoryCard
               CrossAxisAlignment.start,
 
           children: [
-            // =========================
-            // IMAGE
-            // =========================
+
             Expanded(
               child: ClipRRect(
                 borderRadius:
@@ -407,9 +381,7 @@ class _CategoryCard
 
                   fit: BoxFit.cover,
 
-                  // =========================
-                  // LOADING IMAGE
-                  // =========================
+
                   loadingBuilder:
                       (
                     context,
@@ -436,9 +408,7 @@ class _CategoryCard
                     );
                   },
 
-                  // =========================
-                  // ERROR IMAGE
-                  // =========================
+
                   errorBuilder:
                       (
                     context,
@@ -468,10 +438,6 @@ class _CategoryCard
             const SizedBox(
               height: 10,
             ),
-
-            // =========================
-            // TITLE
-            // =========================
             Text(
               category.title,
 
@@ -496,9 +462,7 @@ class _CategoryCard
               height: 3,
             ),
 
-            // =========================
-            // BOOK COUNT
-            // =========================
+            
             Text(
               '${category.formattedBookCount} BOOKS',
 

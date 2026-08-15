@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 children: [
                   const Text(
-                    'Welcome back 👋',
+                    'Welcome back ',
                     style: TextStyle(
                       color: teal,
                       fontSize: 28,
